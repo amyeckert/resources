@@ -273,3 +273,42 @@ function confirmEnding(str, target) {
  // substr() calculates the index of first matching character from the string’s end if the specified location is negative. Using the - operator in front of target.length makes it negative.
 
 
+//
+//8. Repeat a given string (first argument) num times (second argument). Return an empty string if num is not a positive number.
+
+
+function repeatStringNumTimes(str, num) {
+  // repeat after me
+  var newString = ''; 
+  while (num > 0 ) { 
+    newString += str;
+    num--;
+
+  }
+   return newString; 
+  }
+
+repeatStringNumTimes("abc", 3);
+
+
+// OK solution:
+// while number > 0, add add string to new string and decrement the num until it's 0.
+
+// BETTER:
+function repeatStringNumTimes(str, num) {
+  return num > 0 ? str.repeat(num) : '';
+}
+// if num > 0 is true, repeat the string by the (num) otherwise return empty string. 
+
+// OR using recursion:
+function repeatStringNumTimes(str, num) {
+  if(num < 0)
+    return "";
+  if(num === 1)
+    return str;
+  else
+    return str + repeatStringNumTimes(str, num - 1);
+}
+// We check if num is negative and return an empty string if true.
+// Then we check if it’s equal to 1 and in that case we return the string itself.
+// If not, we add the string to a call of our function with num being decreased by 1, which will add another str and another… until eventually num is 1. And return that whole process.

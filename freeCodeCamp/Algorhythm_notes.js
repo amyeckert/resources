@@ -1,4 +1,9 @@
-//Notes for Algorhythm Challenges https://www.freecodecamp.org/challenges/get-set-for-our-algorithm-challenges
+// Notes for Algorhythm Challenges 
+// https://www.freecodecamp.org/challenges/get-set-for-our-algorithm-challenges
+
+/**************************************************************
+***************************************************************
+***************************************************************/
 
 // 1.Reverse the provided string.
 // You may need to turn the string into an array before you can reverse it.
@@ -14,6 +19,9 @@ function reverseString(str) {
 
 reverseString("hello"); //returns "olleh"
 
+/**************************************************************
+***************************************************************
+***************************************************************/
 
 // 2. Return the factorial of the provided integer.  
 // If the integer is represented with the letter n, a factorial is the product of all 
@@ -29,7 +37,7 @@ function factorialize(num) {
   return a;
 }
 
-factorialize(6);
+factorialize(6); // 720
 
 // OR
 
@@ -41,12 +49,16 @@ function factorialize(num) {
  	return num * factorialize(num-1); 
 }
 
-factorialize(5);
+factorialize(5); // 120
+
+/**************************************************************
+***************************************************************
+***************************************************************/
 
 // 3. Return true if the given string is a palindrome. Otherwise, return false.
 // A palindrome is a word or sentence that's spelled the same way both forward and backward, 
 // ignoring punctuation, case, and spacing.
-//  Note: You'll need to remove all non-alphanumeric characters (punctuation, spaces and symbols) 
+// Note: You'll need to remove all non-alphanumeric characters (punctuation, spaces and symbols) 
 // and turn everything lower case in order to check for palindromes.
 
 // Answer:
@@ -67,9 +79,14 @@ function palindrome(str) {
   return true;
 }
 
-// we set up our for loop and declare an index i to keep track of the loop. We set our escape sequence to when i is greater than the length of the string divided by two, which tells the loop to stop after the halfway point of the string. And finally we set i to increment after every loop.
-
-//Inside of each loop we want to check that the letter in element [i] is equal to the letter in the length of the string minus i, [str.length - i]. Each loop, the element that is checked on both sides of the string moves closer to the center until we have checked all of the letters. If at any point the letters do not match, we return false. If the loop completes successfully, it means we have a palindrome and therefore we return true!
+// we set up our for loop and declare an index i to keep track of the loop. 
+// We set our escape sequence to when i is greater than the length of the string divided by two, which tells the 
+// loop to stop after the halfway point of the string. And finally we set i to increment after every loop.
+// Inside of each loop we want to check that the letter in element [i] is equal to the letter 
+// in the length of the string minus i, [str.length - i]. 
+// Each loop, the element that is checked on both sides of the string moves closer to the center 
+// until we have checked all of the letters. If at any point the letters do not match, we return false. 
+// If the loop completes successfully, it means we have a palindrome and therefore we return true!
 
 // BEST! source: https://forum.freecodecamp.org/t/freecodecamp-algorithm-challenge-guide-check-for-palindromes/16004
 // This solution performs at minimum 7x better, at maximum infinitely better.
@@ -102,13 +119,19 @@ function palindrome(str) {
   return true;
 }
 
- /* The simpler solutions perform very poorly on long strings because they operate on the whole string multiple times (toLowerCase(), replace(), split(), reverse(), join()) before comparing the whole string twice.
+// The simpler solutions perform very poorly on long strings because they operate on the whole string multiple times 
+// (toLowerCase(), replace(), split(), reverse(), join()) before comparing the whole string twice.
+// The beauty of this solution is it never needs to read through the whole string, even once, 
+// to know that it’s not a palindrome. Why read through the whole string if you can tell that it’s not a palindrome 
+// just by looking at two letters?
+// Uses a while loop instead of a for loop as a best practice - because we are using two variables, 
+// one is the index starting from the beginning of the string, and the other starts at the end of the string.
 
-The beauty of this solution is it never needs to read through the whole string, even once, to know that it’s not a palindrome. Why read through the whole string if you can tell that it’s not a palindrome just by looking at two letters?
+/**************************************************************
+***************************************************************
+***************************************************************/
 
-Uses a while loop instead of a for loop as a best practice - because we are using two variables, one is the index starting from the beginning of the string, and the other starts at the end of the string.*/
-
-// 4. RETRUN THE LENGTH OF THE LONGEST WORD IN A SENTENCE:
+// 4. RETURN THE LENGTH OF THE LONGEST WORD IN A SENTENCE:
 // BASIC 
 
 function findLongestWord(str) {
@@ -126,7 +149,6 @@ function findLongestWord(str) {
  }   
                   
 findLongestWord("The quick brown fox jumped over the lazy dog");
-
 //
 // OR:
 //
@@ -136,9 +158,6 @@ function findLongestWord(str) {
       return Math.max(x, y.length) //Math.max returns the largest of zero or more numbers
     }, 0); // the '0' here is used to give an initial value to the x, so that Math.max will know where to start.
 }
-
-
-
 
 // BEST:
 function findLongestWord(str) {
@@ -174,7 +193,9 @@ function findLongestWord(str) {
 // However, if the second element’s length is greater thant the first element’s start, 
 // then we call the function past the first element.
 
-
+/**************************************************************
+***************************************************************
+***************************************************************/
 
 // 5. RETURN A STRING WITH THE FIRST LETTER OF EACH WORD CAPITALIZED
 
@@ -193,7 +214,6 @@ function titleCase(str) {
 }
 
 titleCase("I'm a little tea pot"); 
-
 
 // ADVANCED:
 // The solution works by first lowercasing all the characters in the string and 
@@ -215,15 +235,13 @@ function titleCase(str) {
 // international characters: ‘бабушка курит трубку’ // -> ‘Бабушка Курит Трубку’
 // accented characters: ‘località àtilacol’ // -> ‘Località Àtilacol’
 
-//6. Return an array consisting of the largest number from each provided sub-array. For simplicity, the provided array will contain exactly 4 sub-arrays.
+/**************************************************************
+***************************************************************
+***************************************************************/
 
+//6. Return an array consisting of the largest number from each provided sub-array. 
+// For simplicity, the provided array will contain exactly 4 sub-arrays.
 
-function largestOfFour(arr) {
-  // You can do this!
-  return arr;
-}
-
-largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]);
 //
 // GOOD ANSWER:
 //
@@ -234,9 +252,11 @@ function largestOfFour(arr) {
     });
   });
 }
-// EXPLANATION
-// 1. map all items within the main array to a new array ("largestNumbersGroup") using Array.prototype.map() and return this array as the final result. it's the outer-most level. 
+largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]);
 
+// EXPLANATION
+// 1. map all items within the main array to a new array ("largestNumbersGroup") using Array.prototype.map() 
+// and return this array as the final result. it's the outer-most level. 
 // 2. within each inner array, we reduce its contents down to a single value using Array.prototype.reduce()
 // The callback function passed to the reduce method takes the previous value and 
 // the current value and compares the two values.  
@@ -245,12 +265,13 @@ function largestOfFour(arr) {
 // comparison with the next item within the array, or returns it to the map method callback if it’s the last item. 
 // If condition is true, the operator returns the value of expr1; otherwise, it returns the value of expr2.
 
+/**************************************************************
+***************************************************************
+***************************************************************/
 
-// 7. Check if a string (first argument, str) ends with the given target string (second argument, target).  
+// 7. Check if a string, (the first argument, str) ends with the given target string (second argument, target).  
 
 function confirmEnding(str, target) {
-  // "Never give up and good luck will find you."
-  // -- Falcor
    var doesItMatch = true;
    var matchTarget = target.length; //get length of target string
    var endOfString = str.substring( str.length - matchTarget); 
@@ -272,8 +293,10 @@ function confirmEnding(str, target) {
 }
  // substr() calculates the index of first matching character from the string’s end if the specified location is negative. Using the - operator in front of target.length makes it negative.
 
+/**************************************************************
+***************************************************************
+***************************************************************/
 
-//
 //8. Repeat a given string (first argument) num times (second argument). Return an empty string if num is not a positive number.
 
 
@@ -283,13 +306,11 @@ function repeatStringNumTimes(str, num) {
   while (num > 0 ) { 
     newString += str;
     num--;
-
   }
    return newString; 
   }
 
 repeatStringNumTimes("abc", 3);
-
 
 // OK solution:
 // while number > 0, add add string to new string and decrement the num until it's 0.
@@ -300,7 +321,7 @@ function repeatStringNumTimes(str, num) {
 }
 // if num > 0 is true, repeat the string by the (num) otherwise return empty string. 
 
-// OR using recursion:
+// OR, using recursion:
 function repeatStringNumTimes(str, num) {
   if(num < 0)
     return "";
@@ -314,7 +335,9 @@ function repeatStringNumTimes(str, num) {
 // If not, we add the string to a call of our function with num being decreased by 1, 
 // which will add another str and another… until eventually num is 1. And return that whole process.
 
-
+/**************************************************************
+***************************************************************
+***************************************************************/
 
 // 9. Truncate a string (first argument) if it is longer than the given maximum string length (second argument). 
 // Return the truncated string with a ... ending.
@@ -343,8 +366,12 @@ truncateString("A-tisket a-tasket A green and yellow basket", 11);
 // If our if statement above fails, the program will skip over it including the return statement. 
 // In this case we are able to skip a follow-up “else” statement and return the original string.
 
+/**************************************************************
+***************************************************************
+***************************************************************/
 
-
+// 10. Write a function that splits an array (first argument) into groups the length of size (second argument) 
+// and returns them as a two-dimensional array.
 
 
 

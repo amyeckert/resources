@@ -311,4 +311,40 @@ function repeatStringNumTimes(str, num) {
 }
 // We check if num is negative and return an empty string if true.
 // Then we check if it’s equal to 1 and in that case we return the string itself.
-// If not, we add the string to a call of our function with num being decreased by 1, which will add another str and another… until eventually num is 1. And return that whole process.
+// If not, we add the string to a call of our function with num being decreased by 1, 
+// which will add another str and another… until eventually num is 1. And return that whole process.
+
+
+
+// 9. Truncate a string (first argument) if it is longer than the given maximum string length (second argument). 
+// Return the truncated string with a ... ending.
+// Note that inserting the three dots to the end will add to the string length.
+// However, if the given maximum string length num is less than or equal to 3, then the addition of 
+// the three dots does not add to the string length in determining the truncated string.
+
+function truncateString(str, num) {
+  // Clear out that junk in your trunk  
+  if(str.length > num ) {
+    return str.slice(0, num > 3 ? num-3 : num) + '...';
+  }
+  return str;
+}
+
+truncateString("A-tisket a-tasket A green and yellow basket", 11);
+
+// ANSWER ^^
+// We start by writing an if-statement that checks if the length of the string in the first argument 
+// is greater than the size limit. If true, we need to use the “slice” method to extract a section of the 
+// string and return it as a new string. Here we pass 0 as the starting point for our slice. 
+// To determine the endpoint, we use a ternary operator: num > 3 ? num - 3 : num. 
+// In our ternary, if num is larger than 3, we must factor in the three dots to our total length, and thus we end our slice at num-3. 
+// If num is less than or equal to 3, our slice gets an end variable of just num. 
+// Finally, the '...' is appended to the end of our new string and is returned.
+// If our if statement above fails, the program will skip over it including the return statement. 
+// In this case we are able to skip a follow-up “else” statement and return the original string.
+
+
+
+
+
+

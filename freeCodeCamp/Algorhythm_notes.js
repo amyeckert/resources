@@ -374,4 +374,102 @@ truncateString("A-tisket a-tasket A green and yellow basket", 11);
 // and returns them as a two-dimensional array.
 
 
+function chunkArrayInGroups(arr, size) {
+   var newArray = [];
+    for (var i = 0; i < arr.length; i+=size) {
+      newArray.push(arr.slice(i , i+size));
+    }
+   return newArray;
+  
+}
+
+chunkArrayInGroups(["a", "b", "c", "d"], 2);
+
+// Answer:
+// push to newArray the original arr, sliced, starting at 0, and incrementingby the size... meaning 
+//      This      start at 0, end at i+whatever the size variable is. Work your way out from innermost parantheses.
+// newArray.push(arr.slice(i , i+size));
+
+// Can also use a WHILE loop:
+function chunkArrayInGroups(arr, size) {
+  // Break it up.
+  var newArr = [];
+  var i = 0;
+
+  while (i < arr.length) { // while this is true
+    newArr.push(arr.slice(i, i+size)); // slice array based on size variable and push to newArray
+    i += size; // increment the starting point for the next slice.
+  }
+  return newArr;
+}
+
+/**************************************************************
+***************************************************************
+***************************************************************/
+
+// 11. Return the remaining elements of an array after chopping off n elements from the head.
+// The head means the beginning of the array, or the zeroth index.
+
+function slasher(arr, howMany) {
+  var i = 0;
+  arr.splice(i, howMany); // splice(start position, how many to remove)
+  return arr;
+}
+slasher([1, 2, 3], 2);
+
+// ALSO:
+function slasher(arr, howMany) { 
+  // Return string after the amount chopped off, if no start index is indeicated 0 is assumed.
+  return arr.slice(howMany); 
+}
+
+
+/**************************************************************
+***************************************************************
+***************************************************************/
+
+// 12. Return true if the string in the first element of the array contains 
+//all of the letters of the string in the second element of the array.
+
+
+function mutation(arr) {
+
+  var test = arr[1].toLowerCase(); // case sensitive!
+  var target = arr[0].toLowerCase(); // case sensitive!
+  
+  for (i=0;i<test.length;i++) {
+    if (target.indexOf(test[i]) === -1)
+      return false;
+  }
+  return true;
+}
+//         target,  test
+mutation(["Hello", "hey"]);
+
+// testing whether some things are found in other things, if indexOf(); returns -1 it means the thing is not found.
+// thus:
+// 	2. found here? <---------- 1. are any of these letters (ie. does index match? yes, returns index, no returns -1)
+// 'Blue Whale'.indexOf('Blue') !== -1; // true
+// 'Blue Whale'.indexOf('Bloe') !== -1; // false 
+
+/**************************************************************
+***************************************************************
+***************************************************************/
+
+// 13. Remove all falsy values from an array. 	
+
+
+function bouncer(arr) {
+
+  return arr.filter(Boolean); // checks for Boolean primitive
+}
+
+bouncer([7, "ate", "", false, 9]); // returns [7, "ate", 9];
+
+// If the value is omitted or is 0, -0, null, false, NaN, undefined, or the empty string (""), 
+// the object has an initial value of FALSE.
+// (Boolean) tests whether the test item has an initial value of false,
+// and therefore should be filtered out of the array.
+
+
 

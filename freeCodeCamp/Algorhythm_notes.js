@@ -1,4 +1,4 @@
-// Notes for Algorhythm Challenges 
+// Notes for Basic Algorhythm Challenges 
 // https://www.freecodecamp.org/challenges/get-set-for-our-algorithm-challenges
 
 /**************************************************************
@@ -470,6 +470,142 @@ bouncer([7, "ate", "", false, 9]); // returns [7, "ate", 9];
 // the object has an initial value of FALSE.
 // (Boolean) tests whether the test item has an initial value of false,
 // and therefore should be filtered out of the array.
+
+/**************************************************************
+***************************************************************
+***************************************************************/
+
+// 14. You will be provided with an initial array (the first argument in the destroyer function), 
+// followed by one or more arguments. Remove all elements from the initial array that are of the same 
+// value as these arguments.
+
+function destroyer(arr) {
+  // Remove all the values
+  var args = Array.from(arguments).slice(1); // slices off the first [0] item in args array, 
+  
+  for( var i = 0; i < arr.length; i++) {
+    for ( var j = 0; j < args.length; j++ ) {
+       if(arr[i] === args[j]) {
+          delete arr[i];
+       }
+    } 
+  } 
+  return arr.filter(Boolean);
+}
+
+destroyer([1, 2, 3, 1, 2, 3], 2, 3);
+
+
+// ALSO:
+function destroyer(arr) {
+  var args = Array.from(arguments).slice(1);
+  return arr.filter(function(val) {
+    return !args.includes(val);
+  });
+}
+// Declare a variable named args and set it equal to a new Array object from() the arguments passed into the function. 
+// On the same or next line, use the slice() method on args starting from the second index, 1. 
+// This separates the arguments used for filtering into their own array of args.
+// Return the filtered array, using includes() in the callback function to check if val is not in args; 
+// returning true to keep the value in the original array or false to remove it.
+
+/**************************************************************
+***************************************************************
+***************************************************************/
+
+// 15. Return the lowest index at which a value (second argument) should be inserted into an array (first argument) 
+// once it has been sorted. The returned value should be a number.
+
+function getIndexToIns(arr, num) {
+ 
+ arr.push(num); 
+ arr.sort(function(a, b) {
+  return a - b;
+ });
+ 
+ 
+  return  arr.indexOf(num);
+}
+
+getIndexToIns([2, 5, 10], 15);
+
+
+// ALSO: lots of ways to do this : https://forum.freecodecamp.org/t/freecodecamp-algorithm-challenge-guide-where-do-i-belong/16094
+
+function getIndexToIns(arr, num) {
+  // sort and find right index
+  var index = arr.sort((curr, next) => curr > next)
+    .findIndex((currNum)=> num <= currNum);
+  // Returns proper answer
+  return index === -1 ? arr.length : index;
+}
+// This method seems overly complex, but whatev...
+// First sort the array in ascending order, this is currently done using array functions for minimal footprint.
+// Once the array it is sorted, we directly apply the .findIndex() where we are going to compare every element 
+// in the array until we find where num <= currNum meaning where the number we want to insert is less or equal to 
+// the current number number in the iteration.
+// Then we use ternary operations to check whether we got an index returned or -1. 
+// We only get -1 when the index was not found meaning when we get a false for all elements in the array, 
+// and for such case, it would mean that num should be inserted at the end of the list hence why we use arr.length.
+
+/**************************************************************
+***************************************************************
+***************************************************************/
+
+// 16. One of the simplest and most widely known ciphers is a Caesar cipher, also known as a shift cipher. 
+// In a shift cipher the meanings of the letters are shifted by some set amount.
+// A common modern use is the ROT13 cipher, where the values of the letters are shifted by 13 places. 
+// Thus 'A' ↔ 'N', 'B' ↔ 'O' and so on.
+
+// Write a function which takes a ROT13 encoded string as input and returns a decoded string.
+// All letters will be uppercase. Do not transform any non-alphabetic character (i.e. spaces, punctuation), 
+// but do pass them on.
+// holy shit this is complex! 
+// https://forum.freecodecamp.org/t/freecodecamp-algorithm-challenge-guide-caesars-cipher/16003
+
+function rot13(str) {
+  // Split str into a character array
+  return str.split('')
+  // Iterate over each character in the array
+    .map.call(str, function(char) {
+      // Convert char to a character code
+      x = char.charCodeAt(0);
+      // Checks if character lies between A-Z ascii code for a is 65, z is 90
+      if (x < 65 || x > 90) {
+        return String.fromCharCode(x);  // Return un-converted character
+      }
+      //N = ASCII 78, if the character code is less than 78, shift forward 13 places
+      else if (x < 78) {
+        return String.fromCharCode(x + 13);
+      }
+      // Otherwise shift the character 13 places backward
+      return String.fromCharCode(x - 13);
+    }).join('');  // Rejoin the array into a string
+}
+
+     
+// Solution with Regular expression and Array of ASCII character codes
+function rot13(str) {
+  var rotCharArray = [];
+  var regEx = /[A-Z]/ ;
+  str = str.split(""); //split string into an array
+
+  for (var x in str) {
+    if (regEx.test(str[x])) {
+      // A more general approach
+      // possible because of modular arithmetic
+      // and cyclic nature of rot13 transform
+      rotCharArray.push((str[x].charCodeAt() - 65 + 13) % 26 + 65);
+    } else {
+      rotCharArray.push(str[x].charCodeAt());
+    }
+  }
+  str = String.fromCharCode.apply(String, rotCharArray);
+  return str;
+}
+
+// Change the inputs below to test
+rot13("LBH QVQ VG!"); // 
 
 
 
